@@ -31,6 +31,7 @@
       - Removed compile device header from device description
       - Removed unused conditions
       - Replaced documentation files with permalinks
+      - Reworked memories regions
     </release>
     <release version="2.16.0" date="2024-02-02">
       Package Description (pdsc):
@@ -906,68 +907,71 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x40000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0385-stm32f75xxx-and-stm32f74xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F74xx/5xx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f745ie.pdf"                                                                               title="STM32F745/746 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F745ZG'  ***************************** -->
         <device Dname="STM32F745ZG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F745ZGTx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F745ZE'  ***************************** -->
         <device Dname="STM32F745ZE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F745ZETx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F745VG'  ***************************** -->
         <device Dname="STM32F745VG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F745VGHx"> <feature type="BGA" n="100"/> </variant>
           <variant Dvariant="STM32F745VGTx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F745VE'  ***************************** -->
         <device Dname="STM32F745VE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F745VEHx"> <feature type="BGA" n="100"/> </variant>
           <variant Dvariant="STM32F745VETx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F745IG'  ***************************** -->
         <device Dname="STM32F745IG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F745IGTx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F745IGKx"> <feature type="BGA" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F745IE'  ***************************** -->
         <device Dname="STM32F745IE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F745IETx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F745IEKx"> <feature type="BGA" n="176"/> </variant>
@@ -991,107 +995,110 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x40000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0385-stm32f75xxx-and-stm32f74xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F74xx/5xx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f745ie.pdf"                                                                               title="STM32F745/746 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F746ZG'  ***************************** -->
         <device Dname="STM32F746ZG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F746ZGYx"> <feature type="CSP" n="143"/> </variant>
           <variant Dvariant="STM32F746ZGTx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746VG'  ***************************** -->
         <device Dname="STM32F746VG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F746VGHx"> <feature type="BGA" n="100"/> </variant>
           <variant Dvariant="STM32F746VGTx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746IG'  ***************************** -->
         <device Dname="STM32F746IG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F746IGKx"> <feature type="BGA" n="176"/> </variant>
           <variant Dvariant="STM32F746IGTx"> <feature type="QFP" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746BG'  ***************************** -->
         <device Dname="STM32F746BG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F746BGTx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746NG'  ***************************** -->
         <device Dname="STM32F746NG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F746NGHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746ZE'  ***************************** -->
         <device Dname="STM32F746ZE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F746ZETx"> <feature type="QFP" n="144"/> </variant>
           <variant Dvariant="STM32F746ZEYx"> <feature type="CSP" n="143"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746VE'  ***************************** -->
         <device Dname="STM32F746VE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F746VEHx"> <feature type="BGA" n="100"/> </variant>
           <variant Dvariant="STM32F746VETx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746IE'  ***************************** -->
         <device Dname="STM32F746IE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F746IETx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F746IEKx"> <feature type="BGA" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746BE'  ***************************** -->
         <device Dname="STM32F746BE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F746BETx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F746NE'  ***************************** -->
         <device Dname="STM32F746NE">
-          <memory id="IROM1"                                    start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x0080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x0080000" default="1" />
 
           <variant Dvariant="STM32F746NEHx"> <feature type="BGA" n="216"/> </variant>
         </device>
@@ -1114,59 +1121,62 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x40000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x0008"     default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410"     default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0385-stm32f75xxx-and-stm32f74xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F74xx/5xx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f756bg.pdf"                                                                               title="STM32F756 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F756ZG'  ***************************** -->
         <device Dname="STM32F756ZG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F756ZGYx"> <feature type="CSP" n="143"/> </variant>
           <variant Dvariant="STM32F756ZGTx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F756VG'  ***************************** -->
         <device Dname="STM32F756VG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F756VGHx"> <feature type="BGA" n="100"/> </variant>
           <variant Dvariant="STM32F756VGTx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F756IG'  ***************************** -->
         <device Dname="STM32F756IG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F756IGKx"> <feature type="BGA" n="176"/> </variant>
           <variant Dvariant="STM32F756IGTx"> <feature type="QFP" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F756BG'  ***************************** -->
         <device Dname="STM32F756BG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F756BGTx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F756NG'  ***************************** -->
         <device Dname="STM32F756NG">
-          <memory id="IROM1"                                    start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                    start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"       start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"    start="0x00200000" size="0x100000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM" start="0x00200000" size="0x00100000" default="1" />
 
           <variant Dvariant="STM32F756NGHx"> <feature type="BGA" n="216"/> </variant>
         </device>
@@ -1189,125 +1199,128 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20020000" size="0x60000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x20000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0410-stm32f76xxx-and-stm32f77xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F76xxx/7xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f765bi.pdf"                                                                               title="STM32F765/767/768A/769 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F765BG'  ***************************** -->
         <device Dname="STM32F765BG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F765BGTx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F765BI'  ***************************** -->
         <device Dname="STM32F765BI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F765BITx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F765IG'  ***************************** -->
         <device Dname="STM32F765IG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F765IGKx"> <feature type="BGA" n="176"/> </variant>
           <variant Dvariant="STM32F765IGTx"> <feature type="QFP" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F765II'  ***************************** -->
         <device Dname="STM32F765II">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F765IIKx"> <feature type="BGA" n="176"/> </variant>
           <variant Dvariant="STM32F765IITx"> <feature type="QFP" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F765NG'  ***************************** -->
         <device Dname="STM32F765NG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F765NGHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F765NI'  ***************************** -->
         <device Dname="STM32F765NI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F765NIHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F765VG'  ***************************** -->
         <device Dname="STM32F765VG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F765VGTx"> <feature type="QFP" n="100"/> </variant>
           <variant Dvariant="STM32F765VGHx"> <feature type="BGA" n="100" /> </variant>
         </device>
         <!-- *************************  Device 'STM32F765VI'  ***************************** -->
         <device Dname="STM32F765VI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F765VITx"> <feature type="QFP" n="100"/> </variant>
           <variant Dvariant="STM32F765VIHx"> <feature type="BGA" n="100" /> </variant>
         </device>
         <!-- *************************  Device 'STM32F765ZG'  ***************************** -->
         <device Dname="STM32F765ZG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F765ZGTx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F765ZI'  ***************************** -->
         <device Dname="STM32F765ZI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F765ZITx"> <feature type="QFP" n="144"/> </variant>
         </device>
@@ -1330,124 +1343,127 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20020000" size="0x60000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x20000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0410-stm32f76xxx-and-stm32f77xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F76xxx/7xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f765bi.pdf"                                                                               title="STM32F765/767/768A/769 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F767BI'  ***************************** -->
         <device Dname="STM32F767BI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F767BITx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F767BG'  ***************************** -->
         <device Dname="STM32F767BG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F767BGTx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F767NI'  ***************************** -->
         <device Dname="STM32F767NI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F767NIHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F767NG'  ***************************** -->
         <device Dname="STM32F767NG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F767NGHx"> <feature type="BGA" n="216"/> </variant>
         </device>
           <!-- *************************  Device 'STM32F767II'  ***************************** -->
         <device Dname="STM32F767II">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
           <variant Dvariant="STM32F767IITx"> <feature type="QFP" n="176"/> </variant>
 
           <variant Dvariant="STM32F767IIKx"> <feature type="BGA" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F767IG'  ***************************** -->
         <device Dname="STM32F767IG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F767IGTx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F767IGKx"> <feature type="BGA" n="176"/> </variant>
         </device>
          <!-- *************************  Device 'STM32F767ZI'  ***************************** -->
         <device Dname="STM32F767ZI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F767ZITx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F767ZG'  ***************************** -->
         <device Dname="STM32F767ZG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F767ZGTx"> <feature type="QFP" n="144"/> </variant>
         </device>
          <!-- *************************  Device 'STM32F767VI'  ***************************** -->
         <device Dname="STM32F767VI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F767VITx"> <feature type="QFP" n="100"/> </variant>
           <variant Dvariant="STM32F767VIHx"> <feature type="BGA" n="100" /> </variant>
         </device>
         <!-- *************************  Device 'STM32F767VG'  ***************************** -->
         <device Dname="STM32F767VG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F767VGTx"> <feature type="QFP" n="100"/> </variant>
           <variant Dvariant="STM32F767VGHx"> <feature type="BGA" n="100" /> </variant>
@@ -1471,22 +1487,25 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20020000" size="0x60000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x20000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0410-stm32f76xxx-and-stm32f77xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F76xxx/7xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f765bi.pdf"                                                                               title="STM32F765/767/768A/769 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F768AI'  ***************************** -->
         <device Dname="STM32F768AI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F768AIYx"> <feature type="CSP" n="180"/> </variant>
         </device>
@@ -1509,99 +1528,102 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20020000" size="0x60000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x20000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0410-stm32f76xxx-and-stm32f77xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F76xxx/7xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f765bi.pdf"                                                                               title="STM32F765/767/768A/769 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F769BI'  ***************************** -->
         <device Dname="STM32F769BI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F769BITx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F769BG'  ***************************** -->
         <device Dname="STM32F769BG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F769BGTx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F769NI'  ***************************** -->
         <device Dname="STM32F769NI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F769NIHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F769NG'  ***************************** -->
         <device Dname="STM32F769NG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F769NGHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F769II'  ***************************** -->
         <device Dname="STM32F769II">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F769IITx"> <feature type="QFP" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F769IG'  ***************************** -->
         <device Dname="STM32F769IG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F769IGTx"> <feature type="QFP" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F769AI'  ***************************** -->
         <device Dname="STM32F769AI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F769AIYx"> <feature type="CSP" n="180"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F769AG'  ***************************** -->
         <device Dname="STM32F769AG">
-          <memory id="IROM1"                                     start="0x08000000" size="0x100000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x100000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x100000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x100000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x100000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024.FLM"        start="0x08000000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_1024dual.FLM"    start="0x08000000" size="0x00100000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024.FLM"     start="0x00200000" size="0x00100000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_1024dual.FLM" start="0x00200000" size="0x00100000" default="0" />
 
           <variant Dvariant="STM32F769AGYx"> <feature type="CSP" n="180"/> </variant>
         </device>
@@ -1624,67 +1646,70 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20020000" size="0x60000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x20000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0410-stm32f76xxx-and-stm32f77xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F76xxx/7xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f777bi.pdf"                                                                               title="STM32F777/778A/779 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F777BI'  ***************************** -->
         <device Dname="STM32F777BI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F777BITx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F777NI'  ***************************** -->
         <device Dname="STM32F777NI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F777NIHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F777II'  ***************************** -->
         <device Dname="STM32F777II">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F777IITx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F777IIKx"> <feature type="BGA" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F777ZI'  ***************************** -->
         <device Dname="STM32F777ZI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F777ZITx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F777VI'  ***************************** -->
         <device Dname="STM32F777VI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F777VITx"> <feature type="QFP" n="100"/> </variant>
           <variant Dvariant="STM32F777VIHx"> <feature type="BGA" n="100" /> </variant>
@@ -1708,22 +1733,25 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20020000" size="0x60000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x20000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0410-stm32f76xxx-and-stm32f77xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F76xxx/7xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f777bi.pdf"                                                                               title="STM32F777/778A/779 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F778AI'  ***************************** -->
         <device Dname="STM32F778AI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F778AIYx"> <feature type="CSP" n="180"/> </variant>
         </device>
@@ -1746,55 +1774,58 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20020000" size="0x60000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x20000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0410-stm32f76xxx-and-stm32f77xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F76xxx/7xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f777bi.pdf"                                                                               title="STM32F777/778A/779 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F779BI'  ***************************** -->
         <device Dname="STM32F779BI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F779BITx"> <feature type="QFP" n="208"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F779NI'  ***************************** -->
         <device Dname="STM32F779NI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F779NIHx"> <feature type="BGA" n="216"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F779II'  ***************************** -->
         <device Dname="STM32F779II">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F779IITx"> <feature type="QFP" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F779AI'  ***************************** -->
         <device Dname="STM32F779AI">
-          <memory id="IROM1"                                     start="0x08000000" size="0x200000" default="1" startup="1" />
-          <memory id="IROM2"                                     start="0x00200000" size="0x200000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x200000" default="0" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x200000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x200000" default="0" />
+          <memory    name="Flash"      access="rx"               start="0x08000000" size="0x00200000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"               start="0x00200000" size="0x00200000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048.FLM"        start="0x08000000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_2048dual.FLM"    start="0x08000000" size="0x00200000" default="0" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048.FLM"     start="0x00200000" size="0x00200000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7xTCM_2048dual.FLM" start="0x00200000" size="0x00200000" default="0" />
 
           <variant Dvariant="STM32F779AIYx"> <feature type="CSP" n="180"/> </variant>
         </device>
@@ -1817,47 +1848,50 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x30000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x000C" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x0210" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0431-stm32f72xxx-and-stm32f73xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F72xxx/3xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f732ie.pdf"                                                                               title="STM32F732xx/3xx Data Sheet"/>
 
         <!-- *************************  Device 'STM32F732VE'  ***************************** -->
         <device Dname="STM32F732VE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1"  startup="1"/>
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0"  startup="0"/>
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F732VETx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F732RE'  ***************************** -->
         <device Dname="STM32F732RE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1"  startup="1"/>
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0"  startup="0"/>
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F732RETx"> <feature type="QFP" n="64"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F732ZE'  ***************************** -->
         <device Dname="STM32F732ZE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1"  startup="1"/>
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0"  startup="0"/>
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F732ZETx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F732IE'  ***************************** -->
         <device Dname="STM32F732IE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1"  startup="1"/>
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0"  startup="0"/>
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F732IETx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F732IEKx"> <feature type="BGA" n="176"/> </variant>
@@ -1881,84 +1915,87 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x30000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x000C" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x0210" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0431-stm32f72xxx-and-stm32f73xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F72xxx/3xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f722ic.pdf"                                                                               title="STM32F722xx/3xx Data Sheet"/>
 
         <!-- *************************  Device 'STM32F722VE'  ***************************** -->
         <device Dname="STM32F722VE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F722VETx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F722RE'  ***************************** -->
         <device Dname="STM32F722RE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F722RETx"> <feature type="QFP" n="64"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F722ZE'  ***************************** -->
         <device Dname="STM32F722ZE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F722ZETx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F722IE'  ***************************** -->
         <device Dname="STM32F722IE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F722IETx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F722IEKx"> <feature type="BGA" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F722RC'  ***************************** -->
         <device Dname="STM32F722RC">
-          <memory id="IROM1"                                 start="0x08000000" size="0x40000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x40000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x40000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x40000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00040000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00040000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00040000" default="1" />
 
           <variant Dvariant="STM32F722RCTx"> <feature type="QFP" n="64"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F722VC'  ***************************** -->
         <device Dname="STM32F722VC">
-          <memory id="IROM1"                                 start="0x08000000" size="0x40000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x40000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x40000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x40000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00040000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00040000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00040000" default="1" />
 
           <variant Dvariant="STM32F722VCTx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F722ZC'  ***************************** -->
         <device Dname="STM32F722ZC">
-          <memory id="IROM1"                                 start="0x08000000" size="0x40000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x40000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x40000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x40000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00040000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00040000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00040000" default="1" />
 
           <variant Dvariant="STM32F722ZCTx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F722IC'  ***************************** -->
         <device Dname="STM32F722IC">
-          <memory id="IROM1"                                 start="0x08000000" size="0x40000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x40000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x40000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x40000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00040000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00040000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00040000" default="1" />
           <variant Dvariant="STM32F722ICTx"> <feature type="QFP" n="176"/> </variant>
 
           <variant Dvariant="STM32F722ICKx"> <feature type="BGA" n="176"/> </variant>
@@ -1982,49 +2019,52 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x30000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x000C" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x0210" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0431-stm32f72xxx-and-stm32f73xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F72xxx/3xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f732ie.pdf"                                                                               title="STM32F732xx/3xx Data Sheet"/>
 
         <!-- *************************  Device 'STM32F733VE'  ***************************** -->
         <device Dname="STM32F733VE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F733VETx"> <feature type="QFP" n="100"/> </variant>
           <variant Dvariant="STM32F733VEYx"> <feature type="CSP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F733ZE'  ***************************** -->
         <device Dname="STM32F733ZE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F733ZETx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F733IE'  ***************************** -->
         <device Dname="STM32F733IE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F733IETx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F733IEKx"> <feature type="BGA" n="176"/> </variant>
         </device>
       <!--*************************  Device  'STM32F733ZEI' *******************-->
         <device Dname="STM32F733ZEI">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F733ZEIx"> <feature type="BGA" n="144" /> </variant>
         </device>
@@ -2047,70 +2087,73 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x30000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x000C" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x0210" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0431-stm32f72xxx-and-stm32f73xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F72xxx/3xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f722ic.pdf"                                                                               title="STM32F722xx/3xx Data Sheet"/>
 
         <!-- *************************  Device 'STM32F723VE'  ***************************** -->
         <device Dname="STM32F723VE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F723VETx"> <feature type="QFP" n="100" /> </variant>
           <variant Dvariant="STM32F723VEYx"> <feature type="CSP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F723ZE'  ***************************** -->
         <device Dname="STM32F723ZE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F723ZETx"> <feature type="QFP" n="144"/> </variant>
           <variant Dvariant="STM32F723ZEIx"> <feature type="BGA" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F723IE'  ***************************** -->
         <device Dname="STM32F723IE">
-          <memory id="IROM1"                                 start="0x08000000" size="0x80000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x80000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x80000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x80000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00080000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00080000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00080000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00080000" default="1" />
 
           <variant Dvariant="STM32F723IETx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F723IEKx"> <feature type="BGA" n="176"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F723ZC'  ***************************** -->
         <device Dname="STM32F723ZC">
-          <memory id="IROM1"                                 start="0x08000000" size="0x40000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x40000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x40000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x40000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00040000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00040000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00040000" default="1" />
 
           <variant Dvariant="STM32F723ZCTx"> <feature type="QFP" n="144"/> </variant>
           <variant Dvariant="STM32F723ZCIx"> <feature type="BGA" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F723IC'  ***************************** -->
         <device Dname="STM32F723IC">
-          <memory id="IROM1"                                 start="0x08000000" size="0x40000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x40000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x40000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x40000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00040000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00040000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00040000" default="1" />
 
           <variant Dvariant="STM32F723ICTx"> <feature type="QFP" n="176"/> </variant>
           <variant Dvariant="STM32F723ICKx"> <feature type="BGA" n="176"/> </variant>
         </device>
         <!--*************************  Device  'STM32F723VC' *******************-->
         <device Dname="STM32F723VC">
-          <memory id="IROM1"                                 start="0x08000000" size="0x40000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x40000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x40000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x40000" default="1" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00040000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00040000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x2_512.FLM"    start="0x08000000" size="0x00040000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x2TCM_512.FLM" start="0x00200000" size="0x00040000" default="1" />
 
           <variant Dvariant="STM32F723VCTx"> <feature type="QFP" n="100" /> </variant>
           <variant Dvariant="STM32F723VCYx"> <feature type="CSP" n="100" /> </variant>
@@ -2134,47 +2177,52 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x30000" init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000" init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x000C" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x0210" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0431-stm32f72xxx-and-stm32f73xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F72xxx/3xxx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f730i8.pdf"                                                                               title="STM32F730x8 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F730R8'  ***************************** -->
          <device Dname="STM32F730R8">
-          <memory id="IROM1"                                start="0x08000000" size="0x10000" default="1" startup="1" />
-          <memory id="IROM2"                                start="0x00200000" size="0x10000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x10000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x10000" default="0" />
+          <memory    name="Flash"      access="rx"          start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"          start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <memory    name="Flash"      access="rx"          start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"          start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x00010000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x00010000" default="0" />
 
           <variant Dvariant="STM32F730R8Tx"> <feature type="QFP" n="64"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F730V8'  ***************************** -->
         <device Dname="STM32F730V8">
-          <memory id="IROM1"                                start="0x08000000" size="0x10000" default="1" startup="1" />
-          <memory id="IROM2"                                start="0x00200000" size="0x10000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x10000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x10000" default="0" />
+          <memory    name="Flash"      access="rx"          start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"          start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x00010000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x00010000" default="0" />
 
           <variant Dvariant="STM32F730V8Tx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F730Z8'  ***************************** -->
         <device Dname="STM32F730Z8">
-          <memory id="IROM1"                                start="0x08000000" size="0x10000" default="1" startup="1" />
-          <memory id="IROM2"                                start="0x00200000" size="0x10000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x10000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x10000" default="0" />
+          <memory    name="Flash"      access="rx"          start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"          start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x00010000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x00010000" default="0" />
 
           <variant Dvariant="STM32F730Z8Tx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F730I8'  ***************************** -->
         <device Dname="STM32F730I8">
-          <memory id="IROM1"                                start="0x08000000" size="0x10000" default="1" startup="1" />
-          <memory id="IROM2"                                start="0x00200000" size="0x10000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x10000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x10000" default="0" />
+          <memory    name="Flash"      access="rx"          start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"          start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_AXI.FLM" start="0x08000000" size="0x00010000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F7x_64_TCM.FLM" start="0x00200000" size="0x00010000" default="0" />
 
           <variant Dvariant="STM32F730I8Kx"> <feature type="BGA" n="176"/> </variant>
         </device>
@@ -2197,38 +2245,41 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory id="IRAM1" start="0x20010000" size="0x40000"     init="0" default="1" />
-        <memory id="IRAM2" start="0x20000000" size="0x10000"     init="0" default="1" />
-        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x0008" default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410" default="0"/>
+        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
+        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0385-stm32f75xxx-and-stm32f74xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F74xx/5xx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f750n8.pdf"                                                                               title="STM32F750x8 Data Sheet"/>
 
         <!-- *************************  Device 'STM32F750V8'  ***************************** -->
         <device Dname="STM32F750V8">
-          <memory id="IROM1"                                 start="0x08000000" size="0x10000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x10000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F75x_64_AXI.FLM" start="0x08000000" size="0x10000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F75x_64_TCM.FLM" start="0x00200000" size="0x10000" default="0" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F75x_64_AXI.FLM" start="0x08000000" size="0x00010000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F75x_64_TCM.FLM" start="0x00200000" size="0x00010000" default="0" />
 
           <variant Dvariant="STM32F750V8Tx"> <feature type="QFP" n="100"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F750Z8'***************************** -->
         <device Dname="STM32F750Z8">
-          <memory id="IROM1"                                 start="0x08000000" size="0x10000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x10000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F75x_64_AXI.FLM" start="0x08000000" size="0x10000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F75x_64_TCM.FLM" start="0x00200000" size="0x10000" default="0" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F75x_64_AXI.FLM" start="0x08000000" size="0x00010000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F75x_64_TCM.FLM" start="0x00200000" size="0x00010000" default="0" />
 
           <variant Dvariant="STM32F750Z8Tx"> <feature type="QFP" n="144"/> </variant>
         </device>
         <!-- *************************  Device 'STM32F750N8'  ***************************** -->
         <device Dname="STM32F750N8">
-          <memory id="IROM1"                                 start="0x08000000" size="0x10000" default="1" startup="1" />
-          <memory id="IROM2"                                 start="0x00200000" size="0x10000" default="0" startup="0" />
-          <algorithm name="CMSIS/Flash/STM32F75x_64_AXI.FLM" start="0x08000000" size="0x10000" default="1" />
-          <algorithm name="CMSIS/Flash/STM32F75x_64_TCM.FLM" start="0x00200000" size="0x10000" default="0" />
+          <memory    name="Flash"      access="rx"           start="0x08000000" size="0x00100000" default="1" startup="1" />
+          <memory    name="ITCM_Flash" access="rx"           start="0x00200000" size="0x00100000" default="0" startup="0" />
+          <algorithm name="CMSIS/Flash/STM32F75x_64_AXI.FLM" start="0x08000000" size="0x00010000" default="1" />
+          <algorithm name="CMSIS/Flash/STM32F75x_64_TCM.FLM" start="0x00200000" size="0x00010000" default="0" />
 
           <variant Dvariant="STM32F750N8Hx"> <feature type="BGA" n="216"/> </variant>
         </device>
