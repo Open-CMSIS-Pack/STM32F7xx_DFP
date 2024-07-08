@@ -907,10 +907,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -995,10 +995,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1121,13 +1121,13 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
-        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x0008"     default="0"/>
-        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x0410"     default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
+        <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
 
         <book name="https://www.st.com/resource/en/reference_manual/rm0385-stm32f75xxx-and-stm32f74xxx-advanced-armbased-32bit-mcus-stmicroelectronics.pdf" title="STM32F74xx/5xx Reference Manual"/>
         <book name="https://www.st.com/resource/en/datasheet/stm32f756bg.pdf"                                                                               title="STM32F756 Data Sheet"/>
@@ -1199,10 +1199,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1343,10 +1343,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1487,10 +1487,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1528,10 +1528,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1646,10 +1646,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1733,10 +1733,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1774,10 +1774,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00020000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20020000" size="0x0005C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2007C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00020000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20020000" size="0x0005C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2007C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F76x_77x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
@@ -1848,10 +1848,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
@@ -1915,10 +1915,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
@@ -2019,10 +2019,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
@@ -2087,10 +2087,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
@@ -2177,10 +2177,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0002C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2003C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0002C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2003C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F72x_73x_OPT.FLM" start="0x1FFF0000" size="0x0000000C" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7x2_OTP.FLM"     start="0x1FF07800" size="0x00000210" default="0"/>
@@ -2245,10 +2245,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
           __var TraceD3_Pin    = 0x00040006;   // PE6
         </debugvars>
 
-        <memory    name="DTCM"     access="rw"              start="0x20000000" size="0x00010000" default="1" init="0" />
-        <memory    name="SRAM1"    access="rw"              start="0x20010000" size="0x0003C000" default="1" init="0" />
-        <memory    name="SRAM2"    access="rw"              start="0x2004C000" size="0x00004000" default="1" init="0" />
-        <memory    name="BKP_SRAM" access="rw"              start="0x40024000" size="0x00001000" default="0" init="0" />
+        <memory    name="DTCM"     access="rwx"             start="0x20000000" size="0x00010000" default="1" init="0" />
+        <memory    name="SRAM1"    access="rwx"             start="0x20010000" size="0x0003C000" default="1" init="0" />
+        <memory    name="SRAM2"    access="rwx"             start="0x2004C000" size="0x00004000" default="1" init="0" />
+        <memory    name="BKP_SRAM" access="rwx"             start="0x40024000" size="0x00001000" default="0" init="0" />
         <memory    name="ITCM"     access="rwx"             start="0x00000000" size="0x00004000" default="0" init="0" />
         <algorithm name="CMSIS/Flash/STM32F74x_75x_OPT.FLM" start="0x1FFF0000" size="0x00000008" default="0"/>
         <algorithm name="CMSIS/Flash/STM32F7xx_OTP.FLM"     start="0x1FF0F000" size="0x00000410" default="0"/>
