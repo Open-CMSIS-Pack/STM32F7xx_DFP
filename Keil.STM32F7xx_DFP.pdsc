@@ -13,25 +13,9 @@
   </licenseSets>
 
   <releases>
-    <release version="3.0.0-dev">
-      Updated for new CMSIS-Toolbox CubeMX integration
-      Removed CMSIS Drivers
-      Removed STM32CubeMX_FW_F7
-      Removed board drivers (ADC, Audio, Buttons, GLCD, Joystick, LED, Touch...)
-      Removed all examples
-      Updated SVD files
-      Removed previous generator (gpdsc)
-      Added new global generator
-      Package Description (pdsc):
-      - Removed Device:Startup component
-      - Removed Device:STM32Cube HAL components
-      - Removed Device:STM32Cube LL components
-      - Removed Board descriptions
-      - Removed BSP components
-      - Removed compile device header from device description
-      - Removed unused conditions
-      - Replaced documentation files with permalinks
-      - Reworked memories regions
+    <release version="3.0.1-dev">
+      Active development ...
+      Updated documentation references
     </release>
     <release version="2.16.0" date="2024-02-02">
       Package Description (pdsc):
@@ -2314,7 +2298,7 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         #define CMSIS_device_header "stm32f7xx.h"
       </RTE_Components_h>
       <files>
-        <file category="doc" name="https://github.com/Open-CMSIS-Pack/cmsis-toolbox/blob/main/docs/CubeMX.md"/>
+        <file category="doc" name="https://open-cmsis-pack.github.io/cmsis-toolbox/CubeMX"/>
       </files>
     </component>
   </components>
