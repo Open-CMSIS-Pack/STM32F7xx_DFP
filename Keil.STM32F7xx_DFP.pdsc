@@ -16,6 +16,7 @@
   <releases>
     <release version="3.1.1-dev">
       Active development ...
+      - Updated default debug configuration (MCU APBx Freeze registers)
     </release>
     <release version="2.16.0" date="2024-02-02">
       Package Description (pdsc):
@@ -880,10 +881,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F745.svd"/>
         <compile define="STM32F745xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -968,10 +969,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F746.svd"/>
         <compile define="STM32F746xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1094,10 +1095,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F756.svd"/>
         <compile define="STM32F756xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1172,10 +1173,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F765.svd"/>
         <compile define="STM32F765xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E03BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1316,10 +1317,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F767.svd"/>
         <compile define="STM32F767xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E03BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1460,10 +1461,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F768.svd"/>
         <compile define="STM32F767xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E03BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1501,10 +1502,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F769.svd"/>
         <compile define="STM32F769xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E03BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1619,10 +1620,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F777.svd"/>
         <compile define="STM32F777xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E03BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1706,10 +1707,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F778.svd"/>
         <compile define="STM32F777xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E03BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1747,10 +1748,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F779.svd"/>
         <compile define="STM32F779xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F76x_77x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E03BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1821,10 +1822,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F732.svd"/>
         <compile define="STM32F732xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x02E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1888,10 +1889,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F722.svd"/>
         <compile define="STM32F722xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x02E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -1992,10 +1993,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F733.svd"/>
         <compile define="STM32F733xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x02E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -2060,10 +2061,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F723.svd"/>
         <compile define="STM32F723xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x02E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -2150,10 +2151,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F730.svd"/>
         <compile define="STM32F730xx"/>
 
-         <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.0">
+         <debugvars configfile="CMSIS/Debug/STM32F72x_73x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x02E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
@@ -2218,10 +2219,10 @@ The STM32F7 family incorporates high-speed embedded memories and an extensive ra
         <debug svd="CMSIS/SVD/STM32F750.svd"/>
         <compile define="STM32F750xx"/>
 
-        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="1.0.0">
+        <debugvars configfile="CMSIS/Debug/STM32F74x_75x.dbgconf" version="2.0.1">
           __var DbgMCU_CR      = 0x00000007;   // DBGMCU_CR: DBG_SLEEP, DBG_STOP, DBG_STANDBY
-          __var DbgMCU_APB1_Fz = 0x00000000;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
-          __var DbgMCU_APB2_Fz = 0x00000000;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB1_Fz = 0x07E01BFF;   // DGBMCU_APB1_FZ: All Peripherals Operate as in Normal Mode
+          __var DbgMCU_APB2_Fz = 0x00070003;   // DGBMCU_APB2_FZ: All Peripherals Operate as in Normal Mode
           __var TraceClk_Pin   = 0x00040002;   // PE2
           __var TraceD0_Pin    = 0x00040003;   // PE3
           __var TraceD1_Pin    = 0x00040004;   // PE4
