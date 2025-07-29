@@ -507,22 +507,13 @@
 
   <devices>
     <family Dfamily="STM32F7 Series" Dvendor="STMicroelectronics:13">
-      <processor Dcore="Cortex-M7" DcoreVersion="r0p1" Dclock="216000000" Dmpu="MPU" Dendian="Little-endian"/>
+      <processor Dcore="Cortex-M7" DcoreVersion="r0p1" Dclock="216000000" Dmpu="MPU" Dendian="Little-endian" Ddsp="DSP"/>
 
       <book name="https://www.st.com/resource/en/user_manual/um1905-description-of-stm32f7-hal-and-lowlayer-drivers-stmicroelectronics.pdf" title="STM32F7xx HAL Drivers"/>
       <book name="https://developer.arm.com/documentation/dui0646/latest"                                                                   title="Cortex-M7 Generic User Guide"/>
 
       <description>
-The STM32F7 family incorporates high-speed embedded memories and an extensive range of enhanced I/Os and peripherals connected to two APB buses, three AHB buses and a 32-bit multi-AHB bus matrix.
-
-  - 64-Kbyte of CCM (core coupled memory) data RAM
-  - LCD parallel interface, 8080/6800 modes
-  - Timer with quadrature (incremental) encoder input
-  - 5 V-tolerant I/Os
-  - Parallel camera interface
-  - True random number generator
-  - RTC: subsecond accuracy, hardware calendar
-  - 96-bit unique ID
+Very-high-performance STM32F7 MCUs with Arm Cortex-M7 core, ART Accelerator, L1 cache, 1082 CoreMark/462 MIPS at 216MHz.
       </description>
 
       <algorithm name="CMSIS/Flash/STM32F7xx_QSPI_Disco.FLM"     start="0x90000000" size="0x01000000" RAMstart="0x20010000" RAMsize="0x1000" default="0"/>
